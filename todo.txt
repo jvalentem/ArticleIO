@@ -1,0 +1,28 @@
+Relatório de análise do projeto articleIO
+
+Funcionalidades já implementadas:
+- Cadastro de usuários
+- Login e logout
+- Armazenamento de sessão do usuário
+- Cadastro de artigos
+- Listagem de posts na página inicial
+- Busca por artigos
+- Visualização de um artigo individual
+- Painel administrativo básico
+- Banimento de usuários
+- Exclusão de posts
+
+Funções essenciais que ainda estão faltando:
+- Verificação em 2 etapas (2FA) para aumentar a segurança da conta
+- Validação de e-mail mais completa, incluindo formato válido e confirmação de e-mail
+- Edição de artigos, para permitir atualização de conteúdo após o cadastro
+- Recuperação de senha por e-mail
+- Confirmação de senha no cadastro e no reset de senha
+- Upload e edição de imagens dos artigos
+- Sistema de mensagens de erro e sucesso mais amigáveis para o usuário
+- Controle de permissões mais refinado entre autor, editor e administrador
+- Paginação e filtros de posts para melhor navegação
+- Melhor tratamento de validações no backend para evitar dados inválidos
+
+Conclusão:
+O projeto já possui o básico de um site de publicação, mas ainda falta parte essencial de segurança, usabilidade e gestão de conteúdo para se tornar mais profissional e completo.

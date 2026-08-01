@@ -1,0 +1,25 @@
+<%- include( pastaAtual + '/partials/header.ejs')%>
+
+<session class="login">
+    <h1>Criar nova conta</h1>
+    <div class="center">
+        <form method="post" class="common-form">
+            <label for="username">Qual o seu nome?:</label>
+            <input type="text" name="nome" id="nome" required>
+            <label for="username">Escolha um nome de usuário:</label>
+            <input type="text" name="username" id="username" required>
+            <label for="idade">Qual a sua idade?</label>
+            <input type="number" name="idade" id="idade" required>
+            <label for="email">Email:</label>
+            <input type="email" name="email" id="email">
+            <label for="password">Senha</label>
+            <input type="password" name="password" id="password" required>
+            <label for="password-confirmation">Confirme a senha</label>
+            
+            <input type="password" name="confirmacao" id="confirmacao" required>
+            <input type="submit" value="Criar conta">
+        </form>
+    </div>
+</session>
+
+<%- include( pastaAtual + '/partials/footer.html')%>

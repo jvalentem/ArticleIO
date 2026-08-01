@@ -1,0 +1,79 @@
+<%- include(pastaAtual + '/partials/header.ejs')%>
+
+<section class="cadastro-artigo">
+    <div class="center">
+        <%if(usuarioLogado){%>
+            <h1>Cadastro de novo artigo</h1>
+            <form action="/cadastro-artigo" method="POST" class="common-form">
+                <input type="text" name="titulo" id="titulo" class="nome" placeholder="Titulo do artigo (obrigatório)" required>
+                <input type="url" name="capa" id="imagem-capa" placeholder="URL da capa (opcional)">
+                <label for="categoria">Selecione uma categoria para o seu artigo:</label>
+                <select name="categoria" id="categoria" required>
+                    <option value="tecnologia">Tecnologia</option>
+                    <option value="politica">Política</option>
+                    <option value="esporte">Esporte</option>
+                    <option value="entretenimento">Entretenimento</option>
+                    <option value="diversos">Diversos</option>
+                </select>
+                <textarea name="introducao" id="introducao" cols="30" rows="5" placeholder="Faça uma introdução sobre o seu artigo (obrigatório)" required></textarea>
+                <h1>Hora de desenvolver o seu artigo!</h1>
+                <div id="article-boxes">
+                    <div class="article-box">
+                        <h2>Desenvolvimento</h2>
+                        <input type="text" name="desenvolvimento[][titulo_desenvolvimento]" class="titulo-desenvolvimento" placeholder="Titulo do seu desenvolvimento (obrigatório)" required>
+                        <textarea name="desenvolvimento[][conteudo]" cols="30" rows="10" placeholder="Desenvolva (obrigatório)" required></textarea>
+                        <input type="url" name="desenvolvimento[][imagem]" class="imagem" placeholder="URL da imagem do seu desenvolvimento (opcional)">
+                    </div>                    
+                </div>
+                <div class="action-buttons">
+                    <button id="inserir-desenvolvimento">Inserir novo desenvolvimento</button>
+                </div>
+                
+
+                <input type="text" name="fonte" id="" placeholder="Insira suas fontes (opcional, mas suscetivel a mudanças)">
+                <input type="submit" value="Cadastrar artigo" class="btn">
+            </form> 
+        <% }else{ %> 
+            <div class="incentivo-login">
+                <h1>Faça Login para poder postar o seu próprio artigo!</h1> 
+                <div class="links">
+                    <a href="">Crie uma nova conta</a>
+                    <a href="/usuario/login">Entrar em uma conta ja existente</a>
+                </div>
+            </div>
+             <% } %>  
+    </div>
+</section>
+
+
+<script>
+    const botaoInserirDesenvolvimento = document.getElementById('inserir-desenvolvimento')
+    let vezesDesenvolvimentoCadastrado = 1;
+    botaoInserirDesenvolvimento.addEventListener('click', e =>{
+        e.preventDefault();
+        if(vezesDesenvolvimentoCadastrado >= 8){alert('Limite de desenvolvimentos atingido!'); return}
+
+        let article_boxes = document.getElementById('article-boxes');
+        let article_box = document.querySelector('.article-box');
+        let article_box_clone = article_box.cloneNode(true);
+        
+        
+        let botaoApagarDesenvolvimento = document.createElement('button');
+        botaoApagarDesenvolvimento.setAttribute('class','apagar-desenvolvimento')
+        botaoApagarDesenvolvimento.textContent = 'Apagar desenvolvimento'
+        let buttonId = vezesDesenvolvimentoCadastrado
+
+        botaoApagarDesenvolvimento.addEventListener('click', e=>{
+            e.preventDefault()
+            article_box_clone.remove()
+            vezesDesenvolvimentoCadastrado -= 1;
+        })
+
+        article_box_clone.appendChild(botaoApagarDesenvolvimento)
+
+        article_boxes.appendChild(article_box_clone);
+        vezesDesenvolvimentoCadastrado += 1;
+    })
+</script>
+
+<%- include(pastaAtual + '/partials/footer.html')%>

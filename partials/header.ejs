@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!--Meta-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!--Link-->
+    <link rel="stylesheet" type="text/css" href="/public/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <!--Scripts-->
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <title>ArticleIO - Portal de Artigos</title>
+</head>
+<body>
+    <header>
+        
+        
+        <div class="center">
+            <a href="/"><h1>Article.Io</h1></a>
+            <form method="/">
+                <i class="fa-solid fa-magnifying-glass"></i>
+                <input type="text" name="busca" id="busca" placeholder="Busca">
+            </form>
+            
+            <% if(usuarioLogado){ %>
+            <i class="fa-solid fa-bars" id="hamburger"></i>
+            <div class="header-profile-box">
+                <h3><a href="/perfil">Sessão atual: <%= usuarioLogado.nome%> (<%= usuarioLogado.acesso %>)</a></h3>
+                <h3><a href= /<%= usuarioLogado.username + '/logout' %> class="danger-button">Sair</a></h3>
+            </div>
+            <div class="mobile-menu">
+                <ul>
+                    <li><h3><a href="/">Home</a></h3></li>
+                    <li><h3><a href="/perfil">Perfil</a></h3></li>
+                    <li><h3><a href= /<%= usuarioLogado.username + '/logout' %>>Sair</a></h3></li>
+                </ul>
+            </div>
+                <%if(usuarioLogado.acesso == 'admin'){%>
+                    <a href="/admin/painel" class="moderador">Painel</a>
+                <% } %>
+                <a href="/cadastrar-artigo" class="botao-publicar-artigo">Publicar artigo</a>
+                <% } %>
+            
+        <% if(!usuarioLogado){ %>
+            <div>
+            <a href="/usuario/login">Entrar</a>
+            <a href="/usuario/registro">Criar nova conta</a>
+            </div>
+        <% } %>
+        
+    </div>
+    </header>

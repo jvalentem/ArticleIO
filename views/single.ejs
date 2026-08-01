@@ -1,0 +1,61 @@
+<%- include(pastaAtual + '/partials/header.ejs')%>
+
+    <section class="artigo">
+        <div class="center">
+
+            <div class="introducao">
+                <h1><%- post.titulo%></h1> 
+                <div class="autor">
+                    <p>Publicado por <%= post.autor%></p>
+                    <p>no dia <%= post.dataPub%></p>
+                </div>
+                    <p id="article-intro"><%- post.introducao%></p>
+            </div>
+
+                <%for(let i=0;i<post.desenvolvimentos[0].titulo_desenvolvimento.length;i++){%>
+                
+                <div class="desenvolvimento">
+                    <h1><%= post.desenvolvimentos[0].titulo_desenvolvimento[i] %></h1>
+                    <p><%= post.desenvolvimentos[0].conteudo[i] %></p>
+                    <%if(post.desenvolvimentos[0].imagem[i]){%>
+                        <img src=<%= post.desenvolvimentos[0].imagem[i] %> alt="">
+                    <% } %>
+                </div>
+                
+                <%}%>
+
+            
+            </div>
+    </section>
+
+    <section class="ultimos-artigos">
+        <div class="center">
+            <h2>Confira os ultimos artigos:</h2>
+            <div class="noticias">
+                <%if(posts.length == 1){%> 
+                    <div class="no-overflow">
+                        <h2>Nenhum artigo disponível no momento!</h2>
+                        <br>
+                        <a href="/cadastrar-artigo">Cadastrar novo</a>
+                    </div>
+                    <%}%>
+                <% for(let i=0;i<posts.length; i++ ){%>
+                    <% if(posts[i].slug != post.slug){ %>
+                        <div class="box">
+                            <img src= <%= posts[i].imagem %> alt="">
+                            <div class="conteudo-noticia">
+                            <h3><%= posts[i].titulo%></h3>
+                            <h4><%= posts[i].categoria %></h4>
+                            <p><%= posts[i].descricao_curta %>...</p>
+                            <a href=<%= "/" + posts[i].slug %>>Ler artigo</a>
+                        </div>
+                        <% } %>
+                </div>
+                    
+                <%}%>        
+                
+            </div>
+        </div>
+    </section>
+
+<%- include(pastaAtual + '/partials/footer.html')%>

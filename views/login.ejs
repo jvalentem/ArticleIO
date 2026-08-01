@@ -1,0 +1,16 @@
+<%- include( pastaAtual + '/partials/header.ejs')%>
+
+<session class="login">
+    <h1>Entrar na sessão</h1>
+    <div class="center">
+        <form method="post" class="common-form">
+            <label for="username">Nome de usuário:</label>
+            <input type="text" name="username" id="username" required>
+            <label for="password">Senha:</label>
+            <input type="password" name="password" id="password" required>
+            <input type="submit" value="Entrar">
+        </form>
+    </div>
+</session>
+
+<%- include( pastaAtual + '/partials/footer.html')%>

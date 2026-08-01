@@ -1,0 +1,21 @@
+<%- include(pastaAtual + '/partials/header.ejs')%>
+<section class="ultimas-noticias">
+        <div class="center">
+            <h2>Resultados da busca (<%= posts.length %> resultados):</h2>
+            <div class="noticias">
+                <% for(let i=0;i<posts.length; i++ ){%>
+                    <div class="box">
+                    <img src= <%= posts[i].imagem %> alt="">
+                    <div class="conteudo-noticia">
+                        <h3><%= posts[i].titulo%></h3>
+                        <h4><%= posts[i].categoria %></h4>
+                        <p><%= posts[i].introducao %></p>
+                        <a href=<%= "/" + posts[i].slug %>>Ler artigo</a>
+                    </div>
+                </div>
+                <%}%>        
+                
+            </div>
+        </div>
+    </section>
+<%- include(pastaAtual + '/partials/footer.html')%>

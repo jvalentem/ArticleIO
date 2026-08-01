@@ -1,0 +1,27 @@
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        document.querySelectorAll('.delete-post-btn').forEach((button) => {
+            button.addEventListener('click', async () => {
+                const slug = button.getAttribute('data-slug');
+
+                const confirmed = confirm('Tem certeza que deseja apagar este artigo?');
+                if (!confirmed) return;
+
+                try {
+                    const response = await fetch(`/${slug}/apagar`, {
+                        method: 'DELETE'
+                    });
+
+                    if (response.ok) {
+                        window.location.reload();
+                    } else {
+                        alert('Não foi possível apagar o artigo.');
+                    }
+                } catch (error) {
+                    console.error(error);
+                    alert('Erro ao tentar apagar o artigo.');
+                }
+            });
+        });
+    });
+</script>

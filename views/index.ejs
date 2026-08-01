@@ -1,0 +1,71 @@
+
+    <!--GAG IGUAL AO WORDPRESS-->
+    <%- include(pastaAtual + '/partials/header.ejs') %>
+
+    <%if(posts.length > 0){%>
+    <section class="hero-section">
+        <div class="center hero-grid">
+            <div class="hero-copy">
+                <span class="badge">Portal de artigos</span>
+                <h1>Conteúdo que informa, inspira e conecta.</h1>
+                <p>Explore publicações recentes em um layout limpo, com foco em leitura, descoberta e uma experiência visual mais agradável!</p>
+                <div class="hero-actions">
+                    <a href="/cadastrar-artigo" class="btn-primary">Publicar artigo</a>
+                    <a href="#artigos" class="btn-secondary">Ver artigos</a>
+                </div>
+            </div>
+
+            <div class="hero-card">
+                <img src="<%= posts[0].imagem %>" alt="<%= posts[0].titulo %>">
+                <div class="hero-card-content">
+                    <span class="badge"><%= posts[0].categoria %></span>
+                    <h3><%= posts[0].titulo %></h3>
+                    <p><%= posts[0].descricao_curta %></p>
+                    <a href="/<%= posts[0].slug %>">Ler artigo</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="ultimas-artigos" id="artigos">
+        <div class="center">
+            <h2>Confira os últimos artigos:</h2>
+
+                <div class="artigos">
+
+                <% for(let i = 0; i < posts.length; i++){%>
+                <div class="box">
+                    <img src= <%= posts[i].imagem %> alt="">
+                    <div class="conteudo-noticia">
+                        <h3><%= posts[i].titulo %></h3>
+                        <h4><%= posts[i].categoria %></h4>
+                        <p>
+                            <%if(posts[i].descricao_curta.length < 50){%>
+                                <%= posts[i].introducao %>
+                            <%}else{%>
+                                <%= posts[i].descricao_curta %>...
+                            <%}%>
+                        </p>
+                        <a href=<%= "/" + posts[i].slug %>>Ler artigo</a>
+                    </div>
+                </div>
+
+                <%}%>
+            </div>
+        </div>
+    </section>
+    <%}else{%>
+        <section class="empty-state">
+            <div class="center">
+                <h1>Nenhum artigo publicado ainda.</h1>
+                <p>Seja o primeiro a compartilhar conhecimento com o portal.</p>
+                <a href="/cadastrar-artigo" class="btn-primary">Criar artigo</a>
+            </div>
+        </section>
+    <%}%>
+
+
+        <%- include(pastaAtual + '/partials/footer.html') %>
+
+</body>
+</html>

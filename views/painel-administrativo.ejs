@@ -1,0 +1,47 @@
+<%- include( pastaAtual + '/partials/header.ejs')%>
+
+<section class="admin-usuarios-cadastrados">
+    <div class="center">
+        <div class="admin-box-usuarios">
+            <h1>Gerenciar usuários cadastrados (<%= users.length%>)</h1>
+        
+            <% for(let i=0;i<users.length;i++){ %>
+                <%if(users[i].username != 'admin'){ %>
+                    <div class="content-box">
+                        <h3><%= users[i].nome%> (<%= users[i].username%>)</h3>
+                        <a href=<%='/' + users[i].username + '/posts' %>%>>Ver artigos</a>
+                        <a href=<%= '/banir/' + users[i].username%> style="background-color: red;">Banir usuário</a>
+                    </div>
+                <% } %>
+            <%}%>
+        </div>
+        <div class="admin-box-artigos">
+            <h1>Gerenciar artigos</h1>
+            <div class="artigos">
+            <% for(let i=0; i < posts.length; i++){ %>
+                <div class="box">
+                    <img src= <%= posts[i].imagem %> alt="">
+                    <div class="conteudo-noticia">
+                        <h3><%= posts[i].titulo %></h3>
+                        <h4><%= posts[i].categoria %></h4>
+                        <p>
+                            <%if(posts[i].descricao_curta.length < 50){%>
+                                <%= posts[i].introducao %>
+                            <%}else{%>
+                                <%= posts[i].descricao_curta %>
+                            <%}%>
+                        </p>
+                        <a href=<%= "/" + posts[i].slug %>>Ler artigo</a>
+                        <button type="button" class="danger-button delete-post-btn" data-slug="<%= posts[i].slug %>">Apagar</button>
+                    </div>
+                </div>
+            <%}%>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<%- include(pastaAtual + '/partials/delete-post-script.html') %>
+<%- include( pastaAtual + '/partials/footer.html') %>
+

@@ -1,0 +1,33 @@
+<%- include(pastaAtual + '/partials/header.ejs')%>
+    
+<section class="gerenciar-posts">
+    <div class="center">
+        <h1>Gerenciar artigos de <%= autor %> (<%= posts.length %>)</h1>
+        <div class="admin-box-artigos">
+            <div class="artigos">
+                <% if(posts.length == 0){ %> <h1>Esse usuário não tem nenhum artigo</h1><%}%>
+            <% for(let i=0; i < posts.length; i++){ %>
+                <div class="box">
+                    <img src= <%= posts[i].imagem %> alt="">
+                    <div class="conteudo-noticia">
+                        <h3><%= posts[i].titulo %></h3>
+                        <h4><%= posts[i].categoria %></h4>
+                        <p>
+                            <%if(posts[i].descricao_curta.length < 50){%>
+                                <%= posts[i].introducao %>
+                            <%}else{%>
+                                <%= posts[i].descricao_curta %>
+                            <%}%>
+                        </p>
+                        <a href=<%= "/" + posts[i].slug %>>Ler artigo</a>
+                        <button type="button" class="danger-button delete-post-btn" data-slug="<%= posts[i].slug %>">Apagar</button>
+                    </div>
+                </div>
+            <%}%>
+            </div>
+        </div>
+    </div>
+</section>
+
+<%- include(pastaAtual + '/partials/delete-post-script.html') %>
+<%- include(pastaAtual + '/partials/footer.html')%>
